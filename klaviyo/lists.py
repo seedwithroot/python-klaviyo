@@ -10,7 +10,7 @@ class Lists(KlaviyoAPI):
     ALL = 'all'
     LIST_NAME = 'list_name'
 
-    def get_lists(self, version=2):
+    def get_lists(self, version=2,params={}):
         """Returns a list of Klaviyo lists.
 
         https://www.klaviyo.com/docs/api/v2/lists#get-lists
@@ -18,7 +18,7 @@ class Lists(KlaviyoAPI):
         if version==2:
             return self._v2_request(self.LISTS, self.HTTP_GET)
         elif version==1:
-            return self._v1_request(self.LISTS, self.HTTP_GET)
+            return self._v1_request(self.LISTS, self.HTTP_GET,params=params)
         return self._v2_request(self.LISTS, self.HTTP_GET)
 
     def create_list(self, list_name):
