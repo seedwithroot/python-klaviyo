@@ -15,9 +15,9 @@ class Lists(KlaviyoAPI):
 
         https://www.klaviyo.com/docs/api/v2/lists#get-lists
         """
-        if version=2:
+        if version==2:
             return self._v2_request(self.LISTS, self.HTTP_GET)
-        elif version=1:
+        elif version==1:
             return self._v1_request(self.LISTS, self.HTTP_GET)
         return self._v2_request(self.LISTS, self.HTTP_GET)
 
