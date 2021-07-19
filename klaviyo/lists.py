@@ -10,13 +10,17 @@ class Lists(KlaviyoAPI):
     ALL = 'all'
     LIST_NAME = 'list_name'
 
-    def get_lists(self):
+    def get_lists(self, version=2):
         """Returns a list of Klaviyo lists.
 
         https://www.klaviyo.com/docs/api/v2/lists#get-lists
         """
+        if version=2:
+            return self._v2_request(self.LISTS, self.HTTP_GET)
+        elif version=1:
+            return self._v1_request(self.LISTS, self.HTTP_GET)
         return self._v2_request(self.LISTS, self.HTTP_GET)
-    
+
     def create_list(self, list_name):
         """This will create a new list in Klaviyo.
 
@@ -43,7 +47,7 @@ class Lists(KlaviyoAPI):
             (dict): information about the list.
         """
         return self._v2_request('{}/{}'.format(self.LIST, list_id), self.HTTP_GET)
-    
+
     def update_list_name_by_id(self, list_id, list_name):
         """This allows you to update a list's name.
 
@@ -64,7 +68,7 @@ class Lists(KlaviyoAPI):
         }
 
         return self._v2_request('{}/{}'.format(self.LIST, list_id), self.HTTP_PUT, params)
-        
+
     def delete_list(self, list_id):
         """Deletes a list by its ID.
 
